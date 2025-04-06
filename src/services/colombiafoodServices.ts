@@ -1,5 +1,4 @@
 
-
 function apiComida() {
     return fetch ('https://api-colombia.com/api/v1/TypicalDish')
         .then(response => response.json())

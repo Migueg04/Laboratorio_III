@@ -67,22 +67,6 @@ class Card extends HTMLElement{
                         color: #444;
                         margin: 6px 0;
                     }
-
-                    .card button {
-                        margin-top: 12px;
-                        padding: 8px 12px;
-                        background-color: #ffcb05;
-                        border: none;
-                        border-radius: 6px;
-                        cursor: pointer;
-                        font-weight: bold;
-                        color: #333;
-                        transition: background-color 0.3s ease;
-                    }
-
-                    .card button:hover {
-                        background-color: #f0b800;
-                    }
                 </style>
 
                     <div class="card_container">
@@ -94,7 +78,7 @@ class Card extends HTMLElement{
                                     <p>${comida.description}</p>
                                     <strong>Ingredientes:</strong>
                                     <p>${comida.ingredients}</p>
-                                    <button>Ver Departamento</button>
+                                    <button-component></button-component>
                                 </div>
                             `;
                         }).join("")}
