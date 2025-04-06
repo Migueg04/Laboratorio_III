@@ -25,72 +25,81 @@ class Card extends HTMLElement{
             console.log (llamadoApiComida)
 
             this.shadowRoot.innerHTML = `
-            <style>
-                .card {
-                    background-color: #fffbe6; /* amarillo claro */
-                    border: 1px solid #f0c000;
-                    border-radius: 12px;
-                    padding: 10px;
-                    margin: 16px 0;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                    font-family: sans-serif;
-                    max-width: 300px;
-                    transition: transform 0.2s ease;
-                }
+                <style>
+                    .card_container {
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr); /* 5 columnas */
+                        gap: 16px;
+                        padding: 16px;
+                    }
 
-                .card:hover {
-                    transform: scale(1.02);
-                }
+                    .card {
+                        background-color: #fffbe6;
+                        border: 1px solid #f0c000;
+                        border-radius: 12px;
+                        padding: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        font-family: sans-serif;
+                        max-width: 300px;
+                        transition: transform 0.2s ease;
+                        max-height: fit-content;
+                    }
 
-                .card img {
-                    width: 100%;
-                    height: auto;
-                    border-radius: 8px;
-                    margin-bottom: 12px;
-                }
+                    .card:hover {
+                        transform: scale(1.02);
+                    }
 
-                .card h1 {
-                    font-size: 1.4rem;
-                    color: #c79200;
-                    margin: 0 0 8px;
-                }
+                    .card img {
+                        width: 100%;
+                        height: auto;
+                        border-radius: 8px;
+                        margin-bottom: 12px;
+                    }
 
-                .card p {
-                    font-size: 0.95rem;
-                    color: #444;
-                    margin: 6px 0;
-                }
+                    .card h1 {
+                        font-size: 1.4rem;
+                        color: #c79200;
+                        margin: 0 0 8px;
+                    }
 
-                .card button {
-                    margin-top: 12px;
-                    padding: 8px 12px;
-                    background-color: #ffcb05;
-                    border: none;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    font-weight: bold;
-                    color: #333;
-                    transition: background-color 0.3s ease;
-                }
+                    .card p {
+                        font-size: 0.95rem;
+                        color: #444;
+                        margin: 6px 0;
+                    }
 
-                .card button:hover {
-                    background-color: #f0b800;
-                }
-            </style>
-                <h1>La mejor comida del Mundo</h1>
-                    ${llamadoApiComida.map((comida: comidaRespuesta) => {
-                        return`
-                            <div class="card">
-                                <img src="${comida.imageUrl || 'https://via.placeholder.com/150'}" alt="${comida.name}">
-                                <h1>${comida.name}</h1>
-                                <p>${comida.description}</p>
-                                <strong>Ingredientes:</strong>
-                                <p>${comida.ingredients}</p>
-                                <button>Ver Departamento</button>
-                            </div>
-                        `
-                    }).join("")}
-        `
+                    .card button {
+                        margin-top: 12px;
+                        padding: 8px 12px;
+                        background-color: #ffcb05;
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-weight: bold;
+                        color: #333;
+                        transition: background-color 0.3s ease;
+                    }
+
+                    .card button:hover {
+                        background-color: #f0b800;
+                    }
+                </style>
+
+                    <div class="card_container">
+                        ${llamadoApiComida.map((comida: comidaRespuesta) => {
+                            return `
+                                <div class="card">
+                                    <img src="${comida.imageUrl || 'https://via.placeholder.com/150'}" alt="${comida.name}">
+                                    <h1>${comida.name}</h1>
+                                    <p>${comida.description}</p>
+                                    <strong>Ingredientes:</strong>
+                                    <p>${comida.ingredients}</p>
+                                    <button>Ver Departamento</button>
+                                </div>
+                            `;
+                        }).join("")}
+                    </div>
+            `
         }
     }
 }
