@@ -22,7 +22,7 @@ class Card extends HTMLElement{
     async render(){
         if (this.shadowRoot) {
             const llamadoApiComida = await apiComida();
-            console.log (llamadoApiComida)
+            console.log (llamadoApiComida);
 
             this.shadowRoot.innerHTML = `
                 <style>
