@@ -70,7 +70,7 @@ class Card extends HTMLElement{
                 </style>
 
                     <div class="card_container">
-                        ${llamadoApiComida.map((comida: comidaRespuesta) => {
+                        ${llamadoApiComida.map((comida: comidaRespuesta, index: number) => {
                             return `
                                 <div class="card">
                                     <img src="${comida.imageUrl || 'https://via.placeholder.com/150'}" alt="${comida.name}">
@@ -78,12 +78,14 @@ class Card extends HTMLElement{
                                     <p>${comida.description}</p>
                                     <strong>Ingredientes:</strong>
                                     <p>${comida.ingredients}</p>
-                                    <button-component></button-component>
+                                    <button-component value=${comida.departmentId}></button-component>
                                 </div>
                             `;
                         }).join("")}
                     </div>
-            `
+                `;
+
+
         }
     }
 }

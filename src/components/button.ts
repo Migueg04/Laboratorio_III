@@ -1,4 +1,6 @@
 class Button extends HTMLElement{
+    static observedAttributes = ["value"]
+
     constructor(){
         super();
         this.attachShadow({mode: "open"})
@@ -30,17 +32,25 @@ class Button extends HTMLElement{
                     }
                 </style>
 
-                <button id="departamentoButton">Ver Departamento</button>
+                <button id="departamentoButton" value="${this.getAttribute("value")}">Ver Departamento</button>
             `
         }
     }
 
     addEvents(){
-        const button = this.shadowRoot?.querySelector("#departamentoButton");
+        const button = this.shadowRoot?.querySelector("#departamentoButton") as HTMLButtonElement;
+        const deptoId = this.getAttribute("value")
         if (button){
             button.addEventListener("click", ()=>{
-                console.log("departamentos");
-            })
+                console.log(deptoId);
+                
+               const llamarDetalle = new CustomEvent('detalleLlamado', {
+                detail: {departmentId: Number(deptoId)},
+                bubbles: true,
+                composed: true
+               });
+               this.dispatchEvent(llamarDetalle);
+            });
         }
     }
 }

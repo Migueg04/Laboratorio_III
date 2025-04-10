@@ -20,6 +20,16 @@ class Departamento extends HTMLElement{
 
     connectedCallback(){
         this.render();
+
+        const deptos = this.shadowRoot?.querySelector('button-component');
+        deptos?.addEventListener('detalleLlamado', (event: Event) => {
+            const customEvent = event as CustomEvent;
+            const departmentId = customEvent.detail.departmentId;
+
+
+
+            
+        });
     }
 
     async render (){
@@ -88,7 +98,7 @@ class Departamento extends HTMLElement{
                     color: #333;
                 }
                 </style>
-                <div class="popup-overlay">
+                <div>
                     ${llamadoApiDeptos.map((deptos:deptoRespuesta) =>{
                         return `
                             <div class="popup-card">
@@ -104,6 +114,7 @@ class Departamento extends HTMLElement{
                 </div>
             `
         }
+
     }
 }
 export default Departamento
