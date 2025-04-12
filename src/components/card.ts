@@ -1,5 +1,6 @@
 import apiComida from "../services/colombiafoodServices";
 
+
 type comidaRespuesta = {
     id: number;
     name: string;
@@ -21,7 +22,7 @@ class Card extends HTMLElement{
 
     async render(){
         if (this.shadowRoot) {
-            const llamadoApiComida = await apiComida();
+            const llamadoApiComida: comidaRespuesta[] = await apiComida();
             console.log (llamadoApiComida);
 
             this.shadowRoot.innerHTML = `
@@ -70,7 +71,7 @@ class Card extends HTMLElement{
                 </style>
 
                     <div class="card_container">
-                        ${llamadoApiComida.map((comida: comidaRespuesta, index: number) => {
+                        ${llamadoApiComida.map((comida: comidaRespuesta) => {
                             return `
                                 <div class="card">
                                     <img src="${comida.imageUrl || 'https://via.placeholder.com/150'}" alt="${comida.name}">
